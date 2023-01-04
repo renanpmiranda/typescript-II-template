@@ -7,20 +7,23 @@ Crie um sistema de cadastro de usuários que contenha:
   b. NormalAccount
 */
 
+type TPerson = {
+  id: string,
+  name: string,
+  email: string,
+  password: string,
+  role: Role
+}
 
+type TAdminAccount = {
+  account: string,
+  permission: boolean
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+type TNormalAccount = {
+  account: string,
+  permission: boolean
+}
 
 /* PRÁTICA GUIADA - Parte 2
 Vamos continuar nosso sistema de cadastro de usuários criando:
@@ -32,3 +35,35 @@ Vamos continuar nosso sistema de cadastro de usuários criando:
 5. Guarde essas pessoas no array de usuários.
 
 */ 
+
+enum Role {
+  ADMIN = "Admin",
+  NORMAL = "Normal"
+}
+
+type TAdminUser = TPerson & TAdminAccount
+
+type TNormalUser = TPerson & TNormalAccount
+
+const users: (TAdminUser | TNormalUser)[] = [
+  {
+    id: "01",
+    name: "Renan",
+    email: "renanpmiranda5@gmail.com",
+    password: "123456",
+    role: Role.ADMIN,
+    account: "admin1",
+    permission: true
+  },
+  {
+    id: "02",
+    name: "Ren",
+    email: "ren@email.com",
+    password: "654321",
+    role: Role.NORMAL,
+    account: "normal1",
+    permission: false
+  }
+]
+
+// console.table(users)
